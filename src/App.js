@@ -48,7 +48,7 @@ const App = () => {
       }
       <div className="product-container">
         {products ? products.map(product => (
-          <div className="product" key={product.id}>
+          <div className="product" key={product._id}>
             <h1>{product.name}</h1>
           </div>
         )):null }
