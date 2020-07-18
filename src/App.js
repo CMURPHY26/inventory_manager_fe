@@ -1,14 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import SideBar from './components/SideBar'
 
 
-
   
 
 const App = () => {
+  const [products, setProducts] = useState("");
   const [sideBarVisible, setSideBarVisible] = useState(false);
+
+  const getInventory = () => {
+    fetch("http://localhost:3003/products")
+    .then( data => {
+      return data.json()
+    })
+    .then(parsedData => {
+      setProducts(parsedData);
+    })
+  }
+  
+  useEffect( () => {
+    getInventory()
+  }, [])
 
   const toggleSideBar = (event) => {
     // console.log(event.currentTarget)
@@ -32,7 +46,13 @@ const App = () => {
       :
       null
       }
-
+      <div className="product-container">
+        {products ? products.map(product => (
+          <div className="product" key={product.id}>
+            <h1>{product.name}</h1>
+          </div>
+        )):null }
+      </div>
     </div>
   );
 }
