@@ -1,24 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import SideBar from './components/SideBar'
 
-function App() {
+
+
+  
+
+const App = () => {
+  const [sideBarVisible, setSideBarVisible] = useState(false);
+
+  const toggleSideBar = (event) => {
+    // console.log(event.currentTarget)
+    let x = event.currentTarget;
+    x.classList.toggle("change");
+    setSideBarVisible(!sideBarVisible);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <div className="menu-icon-container" onClick={(event) => toggleSideBar(event)}>
+          <div className="bar1"></div>
+          <div className="bar2"></div>
+          <div className="bar3"></div>
+        </div>
+      </nav>
+      {sideBarVisible === true ? 
+        <SideBar setSideBarVisible={setSideBarVisible}></SideBar>
+      :
+      null
+      }
+
     </div>
   );
 }
