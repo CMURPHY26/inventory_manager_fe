@@ -20,6 +20,7 @@ const App = () => {
   return (
     <div className="App">
       <nav>
+        <img src="img/InventoryIQLogo.png" alt="InventoryIQ Logo" width="200"/>
         <div className="menu-icon-container" onClick={(event) => toggleSideBar(event)}>
           <div className="bar1"></div>
           <div className="bar2"></div>
