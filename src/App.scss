@@ -106,3 +106,22 @@ nav {
   flex-wrap: wrap;
 }
 
+.product {
+  border: 2px solid grey;
+  width: 250px;
+  margin:1%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.qty-price {
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+}
+
+.qty, .price {
+  padding:1%;
+}
