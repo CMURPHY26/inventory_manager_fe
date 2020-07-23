@@ -53,6 +53,17 @@ const App = () => {
           <div className="product" key={product._id}>
             <h1>{product.name}</h1>
             <h4>Description: {product.description}</h4>
+            <h5>Type: {product.item_type}</h5>
+            <div className="qty-price">
+              <div className="qty">
+                  Qty:<br />
+                  {product.qty}
+              </div>
+              <div className="price">
+                Price:<br />
+                  {product.price}
+              </div>
+            </div>
           </div>
         )):null }
       </div>
