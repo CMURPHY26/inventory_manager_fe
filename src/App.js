@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import {CSSTransition} from 'react-transition-group';
 import SideBar from './components/SideBar'
 
 
@@ -41,11 +42,12 @@ const App = () => {
           <div className="bar3"></div>
         </div>
       </nav>
-      {sideBarVisible === true ? 
-        <SideBar setSideBarVisible={setSideBarVisible}></SideBar>
-      :
-      null
-      }
+      
+        <CSSTransition in={sideBarVisible}
+        timeout={1000} classNames="sidebar" unmountOnExit>
+          <SideBar></SideBar>
+        </CSSTransition>
+
       <div className="product-container">
         {products ? products.map(product => (
           <div className="product" key={product._id}>
