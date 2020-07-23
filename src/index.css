@@ -12,3 +12,17 @@ code {
     monospace;
 }
 
+.sidebar-enter {
+  opacity: 0;
+}
+.sidebar-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+.sidebar-exit {
+  opacity: 1;
+}
+.sidebar-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
