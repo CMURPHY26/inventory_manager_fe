@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const productModal = (props) => {
-    const {setProductModalVisible} = props;
-    const handleSubmit = () => {
+const ProductModal = (props) => {
+    const {setProductModalVisible, product} = props;
+    const [name, setName] = useState("");
 
+    useEffect(() => {
+        if(product !== null) {
+            setName(product.name);
+        }
+
+    }, []) 
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
     }
 
     return (
@@ -12,7 +21,7 @@ const productModal = (props) => {
             <div className="close-form" onClick={() => setProductModalVisible(false)}>X</div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" placeholder="Absolut Vodka"/>
+                    <input type="text" name="name" value={product ? name : null} onChange={(event) => setName(event.target.value)}/>
                     <label htmlFor="description">Description:</label>
                     <input type="text" name="description" placeholder="Add product description here"/>
                     <label htmlFor="item_type">Item Type:</label>
@@ -21,6 +30,7 @@ const productModal = (props) => {
                     <input type="text" name="qty" placeholder="12"/>
                     <label htmlFor="price">Price: $</label>
                     <input type="text" name="price" placeholder="100"/>
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
         </div>
@@ -28,4 +38,4 @@ const productModal = (props) => {
 }
 
 
-export default productModal;
+export default ProductModal;
