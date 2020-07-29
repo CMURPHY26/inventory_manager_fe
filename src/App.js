@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import {CSSTransition} from 'react-transition-group';
 import SideBar from './components/SideBar'
+import ProductModal from './components/ProductModal'
 
 
   
@@ -10,6 +10,7 @@ import SideBar from './components/SideBar'
 const App = () => {
   const [products, setProducts] = useState("");
   const [sideBarVisible, setSideBarVisible] = useState(false);
+  const [productModalVisible, setProductModalVisible] = useState(false);
 
   const getInventory = () => {
     fetch("http://localhost:3003/products")
@@ -32,6 +33,10 @@ const App = () => {
     setSideBarVisible(!sideBarVisible);
   }
 
+  const toggleProductModal = () => {
+    setProductModalVisible(!productModalVisible);
+  }
+
   return (
     <div className="App">
       <nav>
@@ -41,16 +46,13 @@ const App = () => {
           <div className="bar2"></div>
           <div className="bar3"></div>
         </div>
-      </nav>
-      
-        <CSSTransition in={sideBarVisible}
-        timeout={1000} classNames="sidebar" unmountOnExit>
-          <SideBar></SideBar>
-        </CSSTransition>
-
+      </nav>   
       <div className="product-container">
+      {productModalVisible ?
+          <ProductModal></ProductModal>
+        : null}
         {products ? products.map(product => (
-          <div className="product" key={product._id}>
+          <div className="product" key={product._id} onClick={() =>setProductModalVisible(!productModalVisible)}>
             <h1>{product.name}</h1>
             <h4>Description: {product.description}</h4>
             <h5>Type: {product.item_type}</h5>
@@ -67,6 +69,10 @@ const App = () => {
           </div>
         )):null }
       </div>
+        <CSSTransition in={sideBarVisible}
+        timeout={250} classNames="sidebar" unmountOnExit>
+          <SideBar></SideBar>
+        </CSSTransition>
     </div>
   );
 }

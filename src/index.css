@@ -26,3 +26,18 @@ code {
   opacity: 0;
   transition: opacity 500ms;
 }
+
+.productmodal-enter {
+  opacity: 0;
+}
+.productmodal-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+.productmodal-exit {
+  opacity: 1;
+}
+.productmodal-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
