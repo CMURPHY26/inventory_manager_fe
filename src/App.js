@@ -49,7 +49,7 @@ const App = () => {
       </nav>   
       <div className="product-container">
       {productModalVisible ?
-          <ProductModal></ProductModal>
+          <ProductModal setProductModalVisible={setProductModalVisible}></ProductModal>
         : null}
         {products ? products.map(product => (
           <div className="product" key={product._id} onClick={() =>setProductModalVisible(!productModalVisible)}>

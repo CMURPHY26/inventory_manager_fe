@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 
 const productModal = (props) => {
+    const {setProductModalVisible} = props;
+    const handleSubmit = () => {
+
+    }
 
     return (
         <div className="product-modal">
             <div className="product-form">
-                <form action="POST">
+            <div className="close-form" onClick={() => setProductModalVisible(false)}>X</div>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Absolut Vodka"/>
                     <label htmlFor="description">Description:</label>
